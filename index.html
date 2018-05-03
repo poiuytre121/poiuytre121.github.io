@@ -25,6 +25,18 @@
         js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
+    function getFacebookData() {
+        FB.login(function(){
+            FB.api('/me','GET',function(response)
+            {
+                console.log(response);
+                document.querySelector('.data').innerHTML = response.name;
+            });
+        });
+    }
 </script>
+<button onclick="getFacebookData()">Pobierz Dane</button>
+<div class="data"></div>
 </body>
 </html>
